@@ -36,6 +36,7 @@ $(document).ready(function(){
                 messaging.getToken()
                     .then(function (currentToken) {
                         console.log(currentToken);
+                        document.writeln(currentToken);
 
                         if (currentToken) {
                             sendTokenToServer(currentToken);
