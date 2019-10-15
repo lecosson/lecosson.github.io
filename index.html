@@ -1,15 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <head>
 
-    <script type="text/javascript" src="//www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+        <meta charset="UTF-8">
+        <title>test proj</title>
 
-</head>
-<body>
-    <button type="button" id="subscribe">subscribe</button>
-</body>
+        <!-- load custom component -->
+        <script src="./app.js" language="JavaScript" type="module"></script>
+
+    </head>
+    <body>
+
+
+        <!-- -----------------------------------------------------------------------------------------------------------
+            example 1: hardcoded URL's
+        -->
+        <tao-test-component src="./data/sampledata1.json"></tao-test-component>
+        <tao-test-component src="./data/sampledata2.json"></tao-test-component>
+
+
+        <!-- -----------------------------------------------------------------------------------------------------------
+            example 2: using dataURL
+        -->
+        <tao-test-component src="data:text/plain;base64,W3siZmllbGQxIjogMSwiZmllbGQyIjogMn0seyJmaWVsZDEiOiAzLCJmaWVsZDIiOiA0fSx7ImZpZWxkMSI6IDUsImZpZWxkMiI6IDZ9XQ=="></tao-test-component>
+
+
+        <!-- -----------------------------------------------------------------------------------------------------------
+            example 3: empty component
+        -->
+        <tao-test-component></tao-test-component>
+
+
+        <!-- -----------------------------------------------------------------------------------------------------------
+            example 4: change source in runtime for sampledata3.json
+        -->
+        <tao-test-component id="test-load"></tao-test-component>
+
+
+        <!-- -----------------------------------------------------------------------------------------------------------
+            example 5: add component in run-timeand for sampledata4.json
+        -->
+        <div id="test-placeholder"></div>
+
+
+        <!-- -----------------------------------------------------------------------------------------------------------
+            example 6: alternative input
+        -->
+        <tao-test-component>
+            [
+                {"firstName":"John", "lastName":"Doe"},
+                {"firstName":"Anna", "lastName":"Smith"},
+                {"firstName":"Peter", "lastName":"Jones"}
+            ]
+        </tao-test-component>
+
+
+        <!-- -----------------------------------------------------------------------------------------------------------
+            example 1: hardcoded URL's
+        -->
+        <tao-test-component src="./data/testtakers.json"></tao-test-component>
+
+
+    </body>
 </html>
