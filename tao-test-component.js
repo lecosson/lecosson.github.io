@@ -20,8 +20,6 @@ class TaoTestComponent extends HTMLElement {
         super();
 
         // load templates
-        // console.log(window.document.getElementsByName('tao-test-template')[0])
-        // const templates = document.getElementsByName('tao-test-template')[0].import;
         const templates = window.document;
         this.tpls = {
             component:  templates.getElementsByClassName('tpl-component')[0].innerHTML,
@@ -202,43 +200,30 @@ class TaoTestComponent extends HTMLElement {
 (function initialize() {
 
     const tplUrl = './tao-test-component.html';
-    const useFetchInsteadOfHTMLImport = true;
 
     // initialization: add html template
-    if (useFetchInsteadOfHTMLImport) {
-        fetch(tplUrl).then(async response => {
+    fetch(tplUrl).then(async response => {
 
-            // console.log(await response.text());
-            if (response.ok) {
-                document.head.innerHTML += await response.text();
-            } else {
-                //alert("HTTP error : " + response.status);
-            }
+        if (response.ok) {
+            document.head.innerHTML += await response.text();
+        } else {
+            //alert("HTTP error : " + response.status);
+        }
 
-            window.addEventListener('load', (event) => {
-                try {
-                    customElements.define("tao-test-component", TaoTestComponent);
-                } catch (e) {
-                    // already defined
-                }
-            });
-        });
-
-    } else {
-        const tplElement = document.createElement('link');
-        tplElement.setAttribute('rel', 'import');
-        tplElement.setAttribute('name', 'tao-test-template');
-        tplElement.setAttribute('href', tplUrl);
-        document.head.appendChild(tplElement);
-
-        window.addEventListener('load', (event) => {
+        const run = () => {
             try {
                 customElements.define("tao-test-component", TaoTestComponent);
             } catch (e) {
                 // already defined
             }
-        });
-    }
+        };
+
+        if (document.readyState === 'complete') {
+            run()
+        } else {
+            window.addEventListener('load', run);
+        }
+    });
 
 })();
 
